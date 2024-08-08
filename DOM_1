@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Examples</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM Manipulation Examples</h1>
+
+    <!-- Section demonstrating different selection methods -->
+    <div id="selectors">
+        <h2>Selectors</h2>
+        <div id="byId">Selected by ID</div>
+        <div name="byName">Selected by Name</div>
+        <p>Selected by Tag Name</p>
+        <div class="byClass">Selected by Class Name</div>
+        <div class="byClass">Another element with the same class name</div>
+        <div id="parent">
+            <p class="child">Child Element</p>
+            <p class="child">Another Child Element</p>
+        </div>
+    </div>
+
+    <!-- Script to demonstrate DOM selection and manipulation methods -->
+    <script>
+        // Selecting elements by ID
+        const elementById = document.getElementById('byId');
+        elementById.textContent = 'Selected and Modified by ID';
+        console.log('Element selected by ID:', elementById); // HTMLElement
+
+        // Selecting elements by Name
+        const elementsByName = document.getElementsByName('byName');
+        elementsByName[0].textContent = 'Selected and Modified by Name';
+        console.log('Elements selected by Name:', elementsByName); // NodeList
+
+        // Selecting elements by Tag Name
+        const elementsByTagName = document.getElementsByTagName('p');
+        console.log('Elements selected by Tag Name:', elementsByTagName); // HTMLCollection
+        for (let element of elementsByTagName) {
+            element.classList.add('highlight');
+        }
+
+        // Selecting elements by Class Name
+        const elementsByClassName = document.getElementsByClassName('byClass');
+        console.log('Elements selected by Class Name:', elementsByClassName); // HTMLCollection
+        Array.from(elementsByClassName).forEach(element => {
+            element.textContent = 'Selected and Modified by Class Name';
+        });
+
+        // Selecting elements by CSS Selectors
+        const elementByQuerySelector = document.querySelector('#selectors .byClass');
+        elementByQuerySelector.textContent = 'Selected and Modified by Query Selector';
+        console.log('Element selected by Query Selector:', elementByQuerySelector); // HTMLElement
+
+        const elementsByQuerySelectorAll = document.querySelectorAll('.child');
+        console.log('Elements selected by Query Selector All:', elementsByQuerySelectorAll); // NodeList
+        elementsByQuerySelectorAll.forEach(element => {
+            element.classList.add('highlight');
+        });
+
+        // Parent and Child Methods
+        const parentElement = document.getElementById('parent');
+
+        // childNodes includes all types of nodes (element nodes, text nodes, comment nodes)
+        const childNodes = parentElement.childNodes;
+        console.log('Child nodes (including all types of nodes):', childNodes); // NodeList
+        childNodes.forEach(node => {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                node.style.border = '1px solid red';
+            }
+        });
+
+        // children includes only element nodes
+        const children = parentElement.children;
+        console.log('Children (only element nodes):', children); // HTMLCollection
+        Array.from(children).forEach(child => {
+            child.style.border = '1px solid blue';
+        });
+
+        // firstChild and lastChild properties
+        const firstChild = parentElement.firstChild;
+        const lastChild = parentElement.lastChild;
+        console.log('First child (could be a text node):', firstChild); // Node (could be a text node)
+        console.log('Last child (could be a text node):', lastChild); // Node (could be a text node)
+
+        // firstElementChild and lastElementChild properties
+        const firstElementChild = parentElement.firstElementChild;
+        const lastElementChild = parentElement.lastElementChild;
+        console.log('First element child:', firstElementChild); // HTMLElement
+        console.log('Last element child:', lastElementChild); // HTMLElement
+
+        // parentNode property
+        const parentNode = firstElementChild.parentNode;
+        console.log('Parent node:', parentNode); // HTMLElement
+
+        // nextSibling and previousSibling properties
+        const nextSibling = firstElementChild.nextSibling;
+        const previousSibling = lastElementChild.previousSibling;
+        console.log('Next sibling (could be a text node):', nextSibling); // Node (could be a text node)
+        console.log('Previous sibling (could be a text node):', previousSibling); // Node (could be a text node)
+
+        // nextElementSibling and previousElementSibling properties
+        const nextElementSibling = firstElementChild.nextElementSibling;
+        const previousElementSibling = lastElementChild.previousElementSibling;
+        console.log('Next element sibling:', nextElementSibling); // HTMLElement
+        console.log('Previous element sibling:', previousElementSibling); // HTMLElement
+    </script>
+</body>
+</html>
