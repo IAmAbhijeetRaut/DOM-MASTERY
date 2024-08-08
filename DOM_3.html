@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Script Loader Example</title>
+</head>
+<body>
+    <h1>Dynamic Script Loader Example</h1>
+    <p>Check the console for script loading status.</p>
+
+    <script>
+        // Remember that you need to have a file named 'lib.js' in the same directory in which this html file resides
+        // Function to load JavaScript file dynamically
+        function loadJS(url, onLoad = () => {}, onError = () => {}) {
+            let script = document.createElement('script');
+            script.src = url;
+            script.async = true; // Load the script asynchronously
+
+            // Handle successful loading
+            script.onload = () => {
+                console.log(`Script loaded successfully from ${url}`);
+                onLoad();
+            };
+
+            // Handle loading errors
+            script.onerror = () => {
+                console.error(`Failed to load script from ${url}`);
+                onError();
+            };
+
+            // Append the script to the body
+            document.body.appendChild(script);
+        }
+
+        // Example usage
+        loadJS('lib.js', 
+            () => console.log('Script has been loaded and executed.'),
+            () => console.error('Script loading failed.')
+        );
+    </script>
+</body>
+</html>
