@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation Examples</title>
+</head>
+<body>
+    <div id="parent">
+        <div id="original">Original Element</div>
+    </div>
+    <div id="reference">Reference Element</div>
+
+    <script>
+        // createElement example
+        const newDiv = document.createElement('div');
+        newDiv.textContent = 'This is a new div created using createElement()';
+        document.body.appendChild(newDiv);
+        console.log('Created element:', newDiv);
+
+        // appendChild example
+        const parent = document.getElementById('parent');
+        const newChild = document.createElement('p');
+        newChild.textContent = 'This is a new child added using appendChild()';
+        parent.appendChild(newChild);
+        console.log('Appended child:', newChild);
+
+        // textContent example
+        const element = document.getElementById('original');
+        console.log('Original text content:', element.textContent);
+        element.textContent = 'New text content set using textContent';
+        console.log('Updated text content:', element.textContent);
+
+        // innerHTML example
+        const element2 = document.getElementById('reference');
+        console.log('Original HTML content:', element2.innerHTML);
+        element2.innerHTML = '<strong>New HTML content set using innerHTML</strong>';
+        console.log('Updated HTML content:', element2.innerHTML);
+
+        // innerHTML vs. createElement example
+        const element3 = document.createElement('div');
+        element3.innerHTML = '<p>Created using innerHTML</p>';
+        document.body.appendChild(element3);
+        console.log('innerHTML example:', element3.innerHTML);
+
+        const element4 = document.createElement('div');
+        const newPara = document.createElement('p');
+        newPara.textContent = 'Created using createElement';
+        element4.appendChild(newPara);
+        document.body.appendChild(element4);
+        console.log('createElement example:', element4.innerHTML);
+
+        // DocumentFragment example
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < 3; i++) {
+            const newDiv = document.createElement('div');
+            newDiv.textContent = `Fragment div ${i + 1}`;
+            fragment.appendChild(newDiv);
+        }
+        document.body.appendChild(fragment);
+        console.log('DocumentFragment:', fragment);
+
+        // after() example
+        const refNode = document.getElementById('reference');
+        const newNodeAfter = document.createElement('p');
+        newNodeAfter.textContent = 'Inserted after the reference node';
+        refNode.after(newNodeAfter);
+        console.log('Node inserted after reference node:', newNodeAfter);
+
+        // append() example
+        const parentNode = document.getElementById('parent');
+        const newNodeAppend = document.createElement('p');
+        newNodeAppend.textContent = 'Appended using append()';
+        parentNode.append(newNodeAppend);
+        console.log('Node appended to parent:', newNodeAppend);
+
+        // prepend() example
+        const newNodePrepend = document.createElement('p');
+        newNodePrepend.textContent = 'Prepended using prepend()';
+        parentNode.prepend(newNodePrepend);
+        console.log('Node prepended to parent:', newNodePrepend);
+
+        // insertAdjacentHTML() example
+        const element5 = document.getElementById('reference');
+        element5.insertAdjacentHTML('beforeend', '<p>Inserted using insertAdjacentHTML</p>');
+        console.log('HTML inserted using insertAdjacentHTML');
+
+        // replaceChild() example
+        const newNodeReplace = document.createElement('p');
+        newNodeReplace.textContent = 'Replaced child using replaceChild()';
+        const oldNode = parent.children[0];
+        parent.replaceChild(newNodeReplace, oldNode);
+        console.log('Replaced child:', newNodeReplace);
+
+        // cloneNode() example
+        const original = document.getElementById('original');
+        const clone = original.cloneNode(true);
+        document.body.appendChild(clone);
+        console.log('Cloned node:', clone);
+
+        // removeChild() example
+        const child = parent.children[0];
+        parent.removeChild(child);
+        console.log('Removed child:', child);
+
+        // insertBefore() example
+        const newNodeBefore = document.createElement('p');
+        newNodeBefore.textContent = 'Inserted before using insertBefore()';
+        const referenceNode = parent.children[0];
+        parent.insertBefore(newNodeBefore, referenceNode);
+        console.log('Node inserted before reference node:', newNodeBefore);
+
+        // insertAfter() helper function example
+        function insertAfter(newNode, referenceNode) {
+            referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+        }
+        const newNodeInsertAfter = document.createElement('p');
+        newNodeInsertAfter.textContent = 'Inserted after using insertAfter() helper function';
+        insertAfter(newNodeInsertAfter, refNode);
+        console.log('Node inserted after reference node:', newNodeInsertAfter);
+    </script>
+</body>
+</html>
