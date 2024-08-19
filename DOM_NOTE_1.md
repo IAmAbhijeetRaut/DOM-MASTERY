@@ -1,4 +1,38 @@
-Sure, let's dive into these topics with detailed explanations, short code examples, pros, cons, use-cases, do's, don'ts, and return types for each method. We'll also demonstrate these methods in an HTML document.
+Here’s a comprehensive table summarizing the key DOM methods, properties, and their usages, including descriptions, examples, and return types where applicable:
+
+| **Feature**               | **Description**                                                                 | **Example**                                                                 | **Return Type**              |
+|---------------------------|---------------------------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------|
+| **`getElementById()`**    | Selects an element by its ID.                                                     | `document.getElementById('myId')`                                           | `HTMLElement`                |
+| **`getElementsByName()`** | Selects elements by their name attribute.                                         | `document.getElementsByName('myName')`                                      | `NodeList`                   |
+| **`getElementsByTagName()`** | Selects elements by their tag name.                                                | `document.getElementsByTagName('div')`                                      | `HTMLCollection`             |
+| **`getElementsByClassName()`** | Selects elements by their class names.                                              | `document.getElementsByClassName('myClass')`                                | `HTMLCollection`             |
+| **`querySelector()`**     | Selects the first element that matches a CSS selector.                             | `document.querySelector('.myClass')`                                        | `HTMLElement`                |
+| **`querySelectorAll()`**  | Selects all elements that match a CSS selector.                                    | `document.querySelectorAll('div.myClass')`                                  | `NodeList`                   |
+| **`createElement()`**     | Creates a new HTML element.                                                        | `document.createElement('div')`                                             | `HTMLElement`                |
+| **`appendChild()`**       | Appends a node as the last child of a specified parent node.                       | `parentElement.appendChild(newElement)`                                     | `HTMLElement`                |
+| **`textContent`**         | Gets or sets the text content of an element.                                       | `element.textContent = 'New text';`                                          | `string`                     |
+| **`innerHTML`**           | Gets or sets the HTML content inside an element.                                   | `element.innerHTML = '<p>New content</p>';`                                  | `string`                     |
+| **`DocumentFragment`**    | A lightweight container to hold DOM nodes temporarily.                             | `let fragment = document.createDocumentFragment();`                           | `DocumentFragment`           |
+| **`after()`**             | Inserts a node after the current node.                                             | `element.after(newElement);`                                                 | `void`                       |
+| **`append()`**            | Appends a node as the last child of a specified parent node.                       | `parentElement.append(newElement);`                                         | `void`                       |
+| **`prepend()`**           | Inserts a node before the first child of a specified parent node.                  | `parentElement.prepend(newElement);`                                        | `void`                       |
+| **`insertAdjacentHTML()`**| Parses a text as HTML and inserts it into the document at a specified position.   | `element.insertAdjacentHTML('beforeend', '<p>New paragraph</p>');`          | `void`                       |
+| **`replaceChild()`**      | Replaces a child element with a new element.                                       | `parentElement.replaceChild(newElement, oldElement);`                       | `HTMLElement`                |
+| **`cloneNode()`**         | Clones an element and its descendants.                                             | `let clone = element.cloneNode(true);`                                       | `HTMLElement`                |
+| **`removeChild()`**       | Removes a child node from a specified parent node.                                | `parentElement.removeChild(childElement);`                                  | `HTMLElement`                |
+| **`insertBefore()`**      | Inserts a new node before an existing node as a child of a specified parent node. | `parentElement.insertBefore(newElement, existingElement);`                  | `HTMLElement`                |
+| **`insertAfter()`**       | Custom helper function to insert a new node after an existing node.               | `insertAfter(newElement, existingElement);` (defined function)               | `void`                       |
+
+### **Details of Return Types**
+
+- **`HTMLElement`**: Represents a single HTML element.
+- **`NodeList`**: Represents a collection of DOM nodes returned by methods like `querySelectorAll()`, `getElementsByName()`, etc. It's not a live collection.
+- **`HTMLCollection`**: Represents a collection of HTML elements returned by methods like `getElementsByClassName()` and `getElementsByTagName()`. It's live and updates automatically.
+- **`DocumentFragment`**: A lightweight container used to build a document structure off-screen and then insert it into the main DOM tree.
+- **`string`**: Represents text content or HTML as a string.
+- **`void`**: Indicates that the method does not return a value.
+
+This table should help you understand the different DOM methods and properties along with their usage, examples, and return types.
 
 ### Section 4. Manipulating Elements
 
